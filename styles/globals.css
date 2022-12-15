@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+input:focus {
+  outline: none;
+}
+
+
 .bg-grey {
   background-color: gray;
 }
@@ -18,7 +25,10 @@
   background-color: red;
 }
 
-
+.bg-red:disabled {
+  background-color: red;
+  opacity: 0.5;
+}
 
 .bg-white {
   background-color: white;

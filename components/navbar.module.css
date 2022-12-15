@@ -1,0 +1,14 @@
+
+
+
+.catalog_appear {
+  display: flex;
+  flex-direction: row;
+}
+
+.catalog_disappear {
+  display: none;
+}
+
+
+

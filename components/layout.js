@@ -1,10 +1,10 @@
 import React from "react";
-import NavBar from "./NavBar";
+import Navbar from "./navbar";
 
 export default function Layout({children}) {
   return (
     <React.Fragment>
-      <NavBar/>
+      <Navbar/>
       <main className="w-screen">{children}</main>
     </React.Fragment>
   )

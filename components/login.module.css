@@ -1,0 +1,11 @@
+.green_border {
+  border: 1px solid green
+}
+
+.red_border {
+  border: 1px solid red;
+}
+
+.pass_border {
+  border: 1px solid #dcdcdc;
+}
