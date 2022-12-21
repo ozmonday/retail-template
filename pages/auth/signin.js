@@ -10,24 +10,28 @@ class SignIn extends React.Component {
 
     this.getCookie = getCookie.bind(this) 
   }
+  
 
-  componentDidMount() {
-    if (this.getCookie("token") == "user") {
-      Router.push("/dashboard/profile")
-    }
-  }
+
+
 
   render() {
+
+    if (this.getCookie("token") == "user") {
+      Router.push("/dashboard/profile")
+      return
+    }
+
     return (
       <Layout>
-      <div className="flex flex-col">
-        <div className="flex flex-row justify-center">
-          <div className="hidden md:flex">
-            regiter
+        <div className="flex flex-col my-3 bg-white">
+          <div className="flex flex-row justify-center">
+            <div className="hidden md:flex">
+              regiter
+            </div>
+            <Login/>
           </div>
-          <Login/>
         </div>
-      </div>
       </Layout>
     )
   }

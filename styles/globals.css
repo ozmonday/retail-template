@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 
+:root {
+  --color-blue-light: #45b6fe;
+  --navbar-container: 5rem;
+  --footer-container: 12rem;
+}
+
+
+.layout {
+  padding-top: 8rem;
+}
+
+body {
+  background-color: whitesmoke;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
 input:focus {
   outline: none;
@@ -32,4 +47,8 @@ input:focus {
 
 .bg-white {
   background-color: white;
+}
+
+.c-white {
+  color: white;
 }
