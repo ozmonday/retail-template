@@ -1,0 +1,13 @@
+.green_border {
+  border: 1px solid green
+}
+
+.red_border {
+  border: 1px solid red;
+  transition: 200ms ease;
+}
+
+.pass_border {
+  border: 1px solid #dcdcdc;
+  transition: 200ms ease;
+}

@@ -1,28 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "./navbar.module.css";
+@import "./jumbotron.module.css";
+@import "./footer.module.css";
+@import "./login.module.css";
 
 :root {
   --color-blue-light: #45b6fe;
-  --navbar-container: 5rem;
-  --footer-container: 12rem;
-}
-
-
-.layout {
-  padding-top: 8rem;
 }
 
 body {
+  display: block;
   background-color: whitesmoke;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100vw;
+  top: 0;
+  z-index: 40;
+}
+
+main {
+  width: 100vw;
+}
+
+footer {
+  width: 100vw;
 }
 
 input:focus {
   outline: none;
 }
-
 
 .bg-grey {
   background-color: gray;
@@ -45,8 +58,20 @@ input:focus {
   opacity: 0.5;
 }
 
-.bg-white {
+.bg-w {
   background-color: white;
+}
+
+.bg-w:hover {
+  background-color: rgb(223, 223, 223);
+}
+
+.bg-blue-facebook {
+  background-color: #3c5898;
+}
+
+.bg-blue-facebook:hover {
+  background-color: #334777;
 }
 
 .c-white {

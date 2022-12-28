@@ -1,47 +1,41 @@
-
-import React from "react";
 import Catalog from "./navbar-catalog";
-import NavbarTop from "./navbar-top";
+import NavTop from "./navbar-top";
 import Search from "./navbar-search";
 import Cart from "./navbar-cart";
-import style from './navbar.module.css'
+import Menu from "./navbar-menu";
+import Icon from "@mdi/react";
+import { mdiMagnify } from "@mdi/js";
 
-export default function Navbar({props}) {
-
-
+export default function Nav({ props }) {
   return (
-    <div className="fixed z-40 w-screen t-0">
-      <NavbarTop state={true}/>
-      <div className="flex flex-row h-12 md:h-20 justify-between md:px-12 bg-grey transition-all">
+    <nav>
+      <NavTop state={false} />
+      <div className="flex h-16 flex-row justify-between px-6 md:h-20 md:px-12 bg-gray-700">
         <div className="flex flex-col justify-center md:hidden">
-          <button>menu</button>
+          <Menu>satu menu</Menu>
         </div>
         <div className="flex flex-col justify-center">
           <p>logo</p>
         </div>
         <div className="flex flex-col justify-center md:hidden">
-          <p>search</p>
+          <button className="flex h-full flex-col justify-center">
+            <Icon path={mdiMagnify} title="search" size={1.2} color="white" />
+          </button>
         </div>
-        <div className="flex flex-row">
-          <Catalog name="HELMETS"/>
-          <Catalog name="CLOTHING"/>
-          <Catalog name="GADGETS"/>
-          <Catalog name="VEHICLE ACCESSORIES"/>
-          <Catalog name="VESTPA 946"/>
-          <Catalog name="COLLECTIONS"/>
-        </div>
-        <div className="flex flex-row justify-between basis-3/12">
-          <Search/>
-          <Cart/>
+        <ul className="hidden md:flex md:flex-row">
+          <Catalog name="HELMETS" />
+          <Catalog name="CLOTHING" />
+          <Catalog name="GADGETS" />
+          <Catalog name="VEHICLE ACCESSORIES" />
+          <Catalog name="VESTPA 946" />
+          <Catalog name="COLLECTIONS" />
+        </ul>
+        <div className="hidden md:flex md:basis-3/12 md:flex-row md:justify-between">
+          <Search />
+          <Cart />
         </div>
       </div>
-      <hr className={`hidden md:flex ${style.line_bottom}`}/>
-    </div>
-  )
+      <hr className="hidden h-2 w-full border-none bg-yellow-400 md:flex" />
+    </nav>
+  );
 }
-
-
-
-
-
-

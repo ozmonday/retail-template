@@ -10,13 +10,9 @@ export default function Search() {
   }
   
   return (
-    <div className="hidden md:flex md:flex-row">
-      <div className="flex flex-col justify-center">
-        <input ref={search} className="p-1.5"/>
-      </div>
-      <div className="flex flex-col justify-center px-2">
-        <button onClick={searcing}><Icon path={mdiMagnify}  title="search" size={1.5} color="white"/></button>
-      </div>
+    <div className="flex flex-row h-full">
+      <input ref={search} className="p-1.5 my-auto"/>
+      <button className="my-auto px-2" onClick={searcing}><Icon path={mdiMagnify}  title="search" size={1.5} color="white"/></button>
     </div>
   )
 }

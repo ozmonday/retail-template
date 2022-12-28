@@ -1,77 +1,88 @@
 import Link from "next/link";
 import Router from "next/router";
-import React, { useEffect } from "react";
-import style from './login.module.css'
-
+import React from "react";
+import style from "./login.module.css";
 import { setCookie } from "../utils/utils";
 
+function checkEmail(value) {
+  return value == "user" ? true : false;
+}
+
+function checkPassword(value) {
+  return value == "root" ? true : false;
+}
 
 export default function Login() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [visible, setVisible ]  = React.useState(false);
-  const [passBoder, setPassBorder] = React.useState(style.pass_border)
-  const [emailBorder, setEmailBorder] = React.useState(style.pass_border)
-  
-  let disable = email === "" || password === ""
+  const [visible, setVisible] = React.useState(false);
+  const [PValid, setPValid] = React.useState({
+    valid: false,
+    style: style.pass_border,
+  });
+  const [EValid, setEValid] = React.useState({
+    valid: false,
+    style: style.pass_border,
+  });
 
   let emailRef = React.useRef();
   let passwordRef = React.useRef();
-  
-  useEffect(()=> setEmail(emailRef.current.value), [])
-  useEffect(()=> setPassword(passwordRef.current.value), [])
 
   const loginAction = () => {
-    console.log(emailRef.current.value)
-    console.log(passwordRef.current.value)
-    setEmail("")
-    setPassword("")
-    Router.push("/")
-    setCookie("token","user", 7)
+    Router.push("/");
+    setCookie("token", "user", 7);
+  };
 
-  }
-
-  const checkEmail = () => {
-    if (emailRef.current.value === "user") {
-      setEmailBorder(style.pass_border)
-      setEmail(emailRef.current.value)
+  const EmailValidation = () => {
+    if (checkEmail(emailRef.current.value)) {
+      setEValid({ valid: true, style: style.pass_border });
     } else {
-      setEmailBorder(style.red_border)
-      setEmail("")
+      setEValid({ valid: false, style: style.red_border });
     }
-  }
+  };
 
-  const checkPassword = () => {
-    if (passwordRef.current.value === "root") {
-      setPassBorder(style.pass_border)
-      setPassword(passwordRef.current.value)
+  const PasswordValidation = () => {
+    if (checkPassword(passwordRef.current.value)) {
+      setPValid({ valid: true, style: style.pass_border });
     } else {
-      setPassBorder(style.red_border)
-      setPassword("")
+      setPValid({ valid: false, style: style.red_border });
     }
-  }
+  };
 
-  return(
-    <div className=" flex flex-col p-8 px-12">
-      <input ref={emailRef} onChange={checkEmail} className={`my-3 p-2 max-w-sm bg-input ${emailBorder}`} placeholder="Email"/>
-      
-      <div className={`flex flex-row justify-end bg-input my-3 max-w-sm ${passBoder}`}>
-        <input ref={passwordRef} onChange={checkPassword} className=" w-full p-2 bg-input" placeholder="Password" type={visible ? "text" : "password"}/>
-        <button className="w-20" onClick={() => setVisible(!visible)} >{visible ? "hide" : "show"}</button>
+  return (
+    <div className=" flex flex-col">
+      <input
+        ref={emailRef}
+        onChange={EmailValidation}
+        className={`bg-input my-2 p-2 ${EValid.style}`}
+        placeholder="email"
+      />
+      <div className={`bg-input my-2 flex flex-row ${PValid.style}`}>
+        <input
+          ref={passwordRef}
+          onChange={PasswordValidation}
+          className="bg-input basis-10/12 p-2"
+          placeholder="password"
+          type={visible ? "text" : "password"}
+        />
+        <button className="basis-2/12" onClick={() => setVisible(!visible)}>
+          {visible ? "hide" : "show"}
+        </button>
       </div>
-
-      <div className="flex flex-row justify-end">
-        <a className="underline " href="http://google.com" >forgot password?</a>
-      </div>
-
-      <div className="flex flex-row justify-start my-9">
-        <button disabled={disable} className="w-full p-2 px-5 bg-red font-bold" onClick={loginAction}>Login</button>
-      </div>
-      
-      <div className="flex flex-row justify-center md:hidden">
-        <p>Do not have account?</p>
-        <Link href="/auth/signup" className="font-bold mx-2">Register</Link>
-      </div>
+      <a className="text-end underline" href="http://google.com">
+        forgot password?
+      </a>
+      <button
+        disabled={!EValid.valid || !PValid.valid}
+        className="md-2 bg-red mt-8 p-2 font-bold"
+        onClick={loginAction}
+      >
+        Login
+      </button>
+      <p className="my-2 text-center md:hidden">
+        Do not have account?
+        <Link href="/auth/signup" className="mx-2 font-bold">
+          Register
+        </Link>
+      </p>
     </div>
-  )
+  );
 }

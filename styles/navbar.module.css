@@ -1,0 +1,71 @@
+#nav-top {
+  height: 1.5rem;
+  overflow: hidden;
+  transition: all 200ms ease;
+  background-color: white;
+}
+
+.line {
+  border: none;
+  margin-top: 2px;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: all 200ms ease;
+}
+
+.catalog-child {
+  display: none;
+}
+
+.catalog-parent {
+  height: 100%;
+}
+
+.catalog-parent:hover .line {
+  width: 100%;
+}
+
+.catalog-parent:hover .catalog-child {
+  display: flex;
+  flex-direction: row;
+}
+
+.cart_appear {
+  height: 100%;
+  width: 30rem;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.cart_disappear {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+
+.menu_appear {
+  height: 100%;
+  width: 100vw;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.menu_disappear {
+  height: 0;
+  width: 100vw;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+
+.link {
+  color: grey;
+  transition: color 150ms ease;
+}
+
+.link:hover {
+  color: var(--color-blue-light);
+}

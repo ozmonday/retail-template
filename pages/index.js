@@ -1,12 +1,11 @@
 import React from "react";
+import Jumbotron from "../components/jumbotron";
 import Layout from "../components/layout";
-import { getCookie } from "../utils/utils";
+import SpecialItems from "../components/special-tems";
 class Home extends React.Component {
   constructor(props) {
-    super(props)
-
+    super(props);
   }
-
 
   componentDidMount() {
     //let res = getCookie("token")
@@ -16,9 +15,12 @@ class Home extends React.Component {
   render() {
     return (
       <Layout>
-        <div>Home</div>
+        <div className="my-3 flex flex-col ">
+          <Jumbotron/>
+          <SpecialItems title="Must Have"/>
+        </div>
       </Layout>
-    )
+    );
   }
 }
 
