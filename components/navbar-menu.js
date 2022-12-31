@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import menu from "../public/menu-svgrepo-com.svg";
+import menu from "../public/menu_white.svg";
 
 export default function Menu({ children }) {
   const [appear, setAppear] = useState(false);

@@ -1,18 +1,20 @@
 import React from "react";
-import Icon from "@mdi/react"
-import { mdiMagnify } from "@mdi/js"
+import Image from "next/image";
+import search from "../public/search_white.svg";
 
 export default function Search() {
-  let search = React.useRef()
+  let src = React.useRef();
 
   const searcing = () => {
-    console.log(search.current.value)
-  }
-  
+    console.log(src.current.value);
+  };
+
   return (
-    <div className="flex flex-row h-full">
-      <input ref={search} className="p-1.5 my-auto"/>
-      <button className="my-auto px-2" onClick={searcing}><Icon path={mdiMagnify}  title="search" size={1.5} color="white"/></button>
+    <div className="flex h-full flex-row">
+      <input ref={src} className="my-auto p-1.5" />
+      <button className="my-auto px-2" onClick={searcing}>
+        <Image src={search} width={35} height={35} alt="cart" />
+      </button>
     </div>
-  )
+  );
 }

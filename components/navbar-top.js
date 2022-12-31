@@ -1,13 +1,15 @@
-import { mdiPhone, mdiAccount, mdiHeart } from "@mdi/js";
-import Link from "next/link";
-import Icon from "@mdi/react";
 import { useEffect } from "react";
 import Router from "next/router";
+import phone from "../public/phone_blue.svg"
+import person from "../public/person_blue.svg"
+import favorite from "../public/favorite_blue.svg"
+import Image from "next/image";
+
 
 function NavLink({ src, icon, title }) {
   const icn = (icon) => {
     if (icon) {
-      return <Icon path={icon} title={`${title}`} size={0.8} color="#45b6fe" />;
+      return <Image alt={title} src={icon} height={20} width={20}/>
     }
   };
 
@@ -22,7 +24,7 @@ function NavLink({ src, icon, title }) {
         {icn(icon)}
       </div>
       <div className="flex h-full flex-col justify-center">
-        <p className={`link text-xs font-bold`}>{title}</p>
+        <p className="link font-montserrat text-xs font-medium">{title}</p>
       </div>
     </button>
   );
@@ -32,17 +34,17 @@ export default function NavTop({ state }) {
   const auth = (state) => {
     if (state) {
       return (
-        <NavLink src="/dashboard/profile" icon={mdiAccount} title="PROFILE" />
+        <NavLink src="/dashboard/profile" icon={person} title="PROFILE" />
       );
     } else {
       return (
-        <NavLink src="/auth/signin" icon={mdiAccount} title="LOGIN/REGISTER" />
+        <NavLink src="/auth/signin" icon={person} title="LOGIN/REGISTER" />
       );
     }
   };
 
   useEffect(() => {
-    document.addEventListener("scroll", (event) => {
+    document.addEventListener("scroll", () => {
       let e = document.getElementById("nav-top");
       if (window.scrollY >= 20) {
         e.style.height = 0;
@@ -53,15 +55,15 @@ export default function NavTop({ state }) {
   });
 
   return (
-    <div id="nav-top" className="hidden md:flex md:w-screen md:flex-row md:justify-between">
+    <div id="nav-top" className="hidden md:flex md:w-full md:flex-row md:justify-between">
       <NavLink src="/" title="VESPA STORE" />
       <ul className="flex flex-row justify-end">
         <li>{auth(state)}</li>
         <li>
-          <NavLink src="/dashboard/wishlist" icon={mdiHeart} title="WISHLIST" />
+          <NavLink src="/dashboard/wishlist" icon={favorite} title="WISHLIST" />
         </li>
         <li>
-          <NavLink src="/contacts" icon={mdiPhone} title="CUSTOMER CARE" />
+          <NavLink src="/contacts" icon={phone} title="CUSTOMER CARE" />
         </li>
       </ul>
     </div>

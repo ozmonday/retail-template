@@ -1,0 +1,19 @@
+.special-items {
+  transition: all 200ms ease;
+  scrollbar-width: none;
+}
+
+
+
+.special-items::-webkit-scrollbar {
+  display: none;
+}  
+
+
+.catalog-line {
+  border: none;
+  margin-top: 1px;
+  height: 3px;
+  transition: all 200ms ease;
+}
+

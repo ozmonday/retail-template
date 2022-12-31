@@ -4,14 +4,19 @@
 @import "./navbar.module.css";
 @import "./jumbotron.module.css";
 @import "./footer.module.css";
-@import "./login.module.css";
+@import "./card.module.css";
+@import "./specialitem.module.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 
 :root {
   --color-blue-light: #45b6fe;
+  --gutter: 20px;
+  --w: 40%;
 }
 
 body {
-  display: block;
+  font-family: 'Montserrat', sans-serif;
   background-color: whitesmoke;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -20,51 +25,34 @@ body {
 nav {
   position: -webkit-sticky;
   position: sticky;
-  width: 100vw;
   top: 0;
   z-index: 40;
 }
 
-main {
-  width: 100vw;
-}
 
-footer {
-  width: 100vw;
-}
+
+
 
 input:focus {
   outline: none;
 }
 
-.bg-grey {
-  background-color: gray;
-}
+
 
 .bg-input {
   background-color: #dcdcdc;
 }
 
-.bg-yellow {
-  background-color: yellow;
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.bg-red {
-  background-color: red;
-}
 
-.bg-red:disabled {
-  background-color: red;
-  opacity: 0.5;
-}
 
-.bg-w {
-  background-color: white;
-}
 
-.bg-w:hover {
-  background-color: rgb(223, 223, 223);
-}
+
+
 
 .bg-blue-facebook {
   background-color: #3c5898;

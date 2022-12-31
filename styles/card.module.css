@@ -1,0 +1,12 @@
+#wish-text {
+  width: 0;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+#wishlist:hover #wish-text {
+  width: 4.5rem;
+  display: block;
+}
+
+

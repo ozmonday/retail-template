@@ -22,7 +22,7 @@ export default function Nav({ props }) {
             <Icon path={mdiMagnify} title="search" size={1.2} color="white" />
           </button>
         </div>
-        <ul className="hidden md:flex md:flex-row">
+        <ul className="hidden lg:flex lg:flex-row">
           <Catalog name="HELMETS" />
           <Catalog name="CLOTHING" />
           <Catalog name="GADGETS" />

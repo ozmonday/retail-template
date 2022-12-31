@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./card-item";
+import CatalogItem from "./catalog-items";
 
-export function Catalog({ title, func }) {
+export function Catalog({state, current, title, func }) {
   return (
     <li className="m-2 flex flex-col">
-      <button onClick={() => func()}>{title}</button>
-      <hr />
+      <button onClick={() => func()}>
+       <p className="text-lg font-bold font-sans">{title.toUpperCase()}</p>
+      </button>
+      <hr className={`catalog-line ${current == state ?"bg-black" : undefined}`} />
     </li>
   );
 }
@@ -15,32 +18,94 @@ class SpecialItems extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      catalogs: ["satu", "dua", "tiga"],
+      catalogs: [
+        {
+          name: "satu",
+          items: [
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini saya",
+              price: 100,
+              discont: 20,
+            },
+          ],
+        },
+        {
+          name: "dua",
+          items: [
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+          ],
+        },
+        {
+          name: "tiga",
+          items: [
+            {
+              name: "ini helm",
+              price: 100,
+              discont: 20,
+            },
+          ],
+        },
+      ],
     };
+
+    this.items = this.state.catalogs.map((v, i) => <CatalogItem key={i} items={v.items} />)
   }
+
   render() {
+    let items = [
+      this.state.catalogs.map((v, i) => (
+        <CatalogItem key={i} items={v.items} />
+      ))
+    ];
     return (
-      <div className="flex w-screen flex-col">
-        <p className="text-center">{this.props.title}</p>
+      <div className="relative flex w-full flex-col">
+        <p className="text-center font-sans text-3xl">{this.props.title.toUpperCase()}</p>
         <ul className="flex flex-row justify-center">
           {this.state.catalogs.map((v, i) => (
             <Catalog
               key={i}
+              title={v.name}
+              current={this.state.current}
               state={i}
-              title={v}
               func={() => this.setState({ current: i })}
             />
           ))}
         </ul>
-        <div className="grid grid-cols-2 gap-10 p-5 md:grid-cols-4 md:px-10">
-          <Item discont={30} name="Helm Mahal" price={30}/>
-          <Item />
-          <div className="bg-gray-700">satu</div>
-          <div className="bg-gray-700">satu</div>
-          <div className="bg-gray-700">satu</div>
-          <div className="bg-gray-700">satu</div>
-          <div className="bg-gray-700">satu</div>
-        </div>
+        {this.items[this.state.current]}
       </div>
     );
   }

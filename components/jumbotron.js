@@ -47,18 +47,18 @@ export default function Jumbotron({}) {
   useEffect(() => {
     let con = document.getElementById("jumbotron");
     con.scrollTo({
-      left: window.innerWidth * state.index,
+      left: document.body.clientWidth * state.index,
       behavior: "smooth",
     });
 
     window.addEventListener("resize", () => {
-      con.scrollLeft = window.innerWidth * state.index;
+      con.scrollLeft = document.body.clientWidth * state.index;
     });
   }, [state]);
 
   return (
     <div className="relative flex flex-col bg-white">
-      <div id="jumbotron" className="flex w-screen flex-row overflow-y-auto">
+      <div id="jumbotron" className="flex w-full flex-row overflow-y-auto">
         {items.map((e, i) => (
           <Image key={i} src={e.src} width="100%" height="auto" alt={e.title} />
         ))}
@@ -68,16 +68,16 @@ export default function Jumbotron({}) {
           <button
             disabled={state.index === 0}
             onClick={() => dispatch({type: "decrement"})}
-            className="m-2 bg-gray-400"
+            className=" bg-gray-400 opacity-75 p-2"
           >
-            <Icon path={mdiChevronLeft} title="left" size={2} color="grey" />
+            <Icon path={mdiChevronLeft} title="left" size={1} color="grey" />
           </button>
           <button
             disabled={state.index === items.length - 1}
             onClick={() => dispatch({type: "increment"})}
-            className="m-2 bg-gray-400"
+            className=" bg-gray-400 opacity-75 p-2"
           >
-            <Icon path={mdiChevronRight} title="right" size={2} color="grey" />
+            <Icon path={mdiChevronRight} title="right" size={1} color="grey" />
           </button>
         </div>
         <div className="absolute bottom-0 mb-3 flex w-full flex-row justify-center">

@@ -48,14 +48,14 @@
 
 .menu_appear {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   transition: all 200ms ease;
 }
 
 .menu_disappear {
   height: 0;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   transition: all 200ms ease;
 }

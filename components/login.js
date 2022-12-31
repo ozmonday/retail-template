@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Router from "next/router";
 import React from "react";
-import style from "./login.module.css";
 import { setCookie } from "../utils/utils";
 
 function checkEmail(value) {
@@ -13,18 +12,9 @@ function checkPassword(value) {
 }
 
 export default function Login() {
-  const [visible, setVisible] = React.useState(false);
-  const [PValid, setPValid] = React.useState({
-    valid: false,
-    style: style.pass_border,
-  });
-  const [EValid, setEValid] = React.useState({
-    valid: false,
-    style: style.pass_border,
-  });
-
-  let emailRef = React.useRef();
-  let passwordRef = React.useRef();
+  const [visible, setVisible] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [email, setEmail] = React.useState();
 
   const loginAction = () => {
     Router.push("/");
@@ -32,32 +22,41 @@ export default function Login() {
   };
 
   const EmailValidation = () => {
-    if (checkEmail(emailRef.current.value)) {
-      setEValid({ valid: true, style: style.pass_border });
+    let email = document.getElementById("email");
+    console.log(email.value)
+    if (checkEmail(email.value)) {
+      email.style.outline = "1px solid #dcdcdc"
+      setEmail(true)
     } else {
-      setEValid({ valid: false, style: style.red_border });
+      email.style.outline = "1px solid red"
+      setEmail(false)
     }
   };
 
   const PasswordValidation = () => {
-    if (checkPassword(passwordRef.current.value)) {
-      setPValid({ valid: true, style: style.pass_border });
+    let password = document.getElementById("password");
+    let border = document.getElementById("password-border");
+    console.log(password.value)
+    if (checkPassword(password.value)) {
+      border.style.outline = "1px solid #dcdcdc"
+      setPassword(true)
     } else {
-      setPValid({ valid: false, style: style.red_border });
+      border.style.outline = "1px solid red"
+      setPassword(false)
     }
   };
 
   return (
     <div className=" flex flex-col">
       <input
-        ref={emailRef}
+        id="email"
         onChange={EmailValidation}
-        className={`bg-input my-2 p-2 ${EValid.style}`}
+        className={`bg-input my-2 p-2`}
         placeholder="email"
       />
-      <div className={`bg-input my-2 flex flex-row ${PValid.style}`}>
+      <div id="password-border" className={`bg-input my-2 flex flex-row`}>
         <input
-          ref={passwordRef}
+          id="password"
           onChange={PasswordValidation}
           className="bg-input basis-10/12 p-2"
           placeholder="password"
@@ -71,7 +70,7 @@ export default function Login() {
         forgot password?
       </a>
       <button
-        disabled={!EValid.valid || !PValid.valid}
+        disabled={!email || !password}
         className="md-2 bg-red mt-8 p-2 font-bold"
         onClick={loginAction}
       >
