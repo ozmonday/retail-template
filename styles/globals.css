@@ -1,12 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import "./navbar.module.css";
-@import "./jumbotron.module.css";
 @import "./footer.module.css";
 @import "./card.module.css";
 @import "./specialitem.module.css";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import "./animation.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Staatliches&display=swap');
 
 
 :root {
@@ -29,30 +30,31 @@ nav {
   z-index: 40;
 }
 
-
-
-
-
 input:focus {
   outline: none;
 }
 
 
 
-.bg-input {
-  background-color: #dcdcdc;
-}
-
-
 .font-montserrat {
   font-family: 'Montserrat', sans-serif;
 }
 
+.font-staatliches {
+  font-family: 'Staatliches', cursive;
+}
+
+.font-reguller {
+  font-weight: 500;
+}
 
 
 
 
 
+.bg-input {
+  background-color: #dcdcdc;
+}
 
 .bg-blue-facebook {
   background-color: #3c5898;
@@ -62,6 +64,10 @@ input:focus {
   background-color: #334777;
 }
 
-.c-white {
-  color: white;
+.hidden-scrollbar {
+  scrollbar-width: none;
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
 }

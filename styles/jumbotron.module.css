@@ -1,7 +1,0 @@
-#jumbotron {
-  scrollbar-width: none;
-}
-
-#jumbotron::-webkit-scrollbar {
-  display: none;
-}

@@ -1,6 +1,8 @@
 import Head from "next/head";
 import React from "react";
+import {AdvertiseSessionOne, AdvertiseSessionTwo} from "../components/adevertise";
 import Jumbotron from "../components/jumbotron";
+import Corusel from "../components/corusel";
 import Layout from "../components/layout";
 import SpecialItems from "../components/special-tems";
 
@@ -22,10 +24,13 @@ class Home extends React.Component {
             retail store
           </title>
         </Head>
-        <div className="my-3 flex flex-col">
+        <div className="flex flex-col">
           <Jumbotron/>
           <SpecialItems title="Must Have"/>
+          <AdvertiseSessionOne/>
           <SpecialItems title="Must Have"/>
+          <Corusel />
+          <AdvertiseSessionTwo/>
         </div>
       </Layout>
     );

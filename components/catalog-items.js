@@ -1,7 +1,8 @@
 import Item from "./card-item";
 import React from "react";
-import Icon from "@mdi/react";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import Image from "next/image";
+import left from "../public/chevron_left_black.svg";
+import right from "../public/chevron_right_black.svg";
 
 class CatalogItem extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class CatalogItem extends React.Component {
     this.state = {
       index: 0,
       items: props.items,
-      nav: false
+      nav: false,
     };
 
     this.container = React.createRef();
@@ -19,14 +20,10 @@ class CatalogItem extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.items.length)
     let el = this.container.current;
     const div = window.innerWidth <= 768 ? 1 : 4;
-  
 
-    el.style.gridTemplateColumns = `repeat(${
-      this.state.items.length
-    }, calc(100% /${div}))`;
+    el.style.gridTemplateColumns = `repeat(${this.state.items.length}, calc(100% /${div}))`;
     el.style.gridTemplateRows = "minmax(0, 1fr)";
 
     window.addEventListener("resize", () => {
@@ -39,17 +36,17 @@ class CatalogItem extends React.Component {
       el.scrollLeft = card * this.state.index;
 
       if (this.state.items.length > div) {
-        console.log("more")
-        this.setState({nav: true})
+        console.log("more");
+        this.setState({ nav: true });
       } else {
-        this.setState({nav: false})
+        this.setState({ nav: false });
       }
     });
 
     if (this.state.items.length > div) {
-      this.setState({nav: true})
+      this.setState({ nav: true });
     } else {
-      this.setState({nav: false})
+      this.setState({ nav: false });
     }
   }
 
@@ -82,23 +79,37 @@ class CatalogItem extends React.Component {
 
   render() {
     return (
-      <div className="flex flex-row justify-center w-full">
-        <div className={`${this.state.nav ? "flex" : "hidden"} flex-col justify-center`}>
-          <button className="bg-gray-400 opacity-75 p-2" onClick={this.leftClick}>
-            <Icon path={mdiChevronLeft} title="left" size={1} color="white" />
+      <div className="flex w-full flex-row justify-center">
+        <div
+          className={`${
+            this.state.nav ? "flex" : "hidden"
+          } flex-col justify-center`}
+        >
+          <button
+            className="bg-gray-400 p-2 opacity-75"
+            onClick={this.leftClick}
+          >
+            <Image alt="left" src={left} height={20} width={20} />
           </button>
         </div>
         <ul
           ref={this.container}
-          className="special-items grid overflow-x-scroll w-3/4"
+          className="hidden-scrollbar grid w-3/4 overflow-x-scroll"
         >
           {this.state.items.map((v, i) => (
             <Item key={i} discont={v.discont} name={v.name} price={v.price} />
           ))}
         </ul>
-        <div className={`${this.state.nav ? "flex" : "hidden"} flex-col justify-center`}>
-          <button className="bg-gray-400 opacity-75 p-2" onClick={this.rightClick}>
-          <Icon path={mdiChevronRight} title="left" size={1} color="white" />
+        <div
+          className={`${
+            this.state.nav ? "flex" : "hidden"
+          } flex-col justify-center`}
+        >
+          <button
+            className="bg-gray-400 p-2 opacity-75"
+            onClick={this.rightClick}
+          >
+            <Image alt="right" src={right} height={20} width={20} />
           </button>
         </div>
       </div>

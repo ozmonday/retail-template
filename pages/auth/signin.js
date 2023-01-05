@@ -5,8 +5,8 @@ import React from "react";
 import Layout from "../../components/layout";
 import Login from "../../components/login";
 import { getCookie } from "../../utils/utils";
-import google from "../../public/google-logo.svg"
-import facebook from "../../public/facebook-logo.svg"
+import google from "../../public/google_logo.svg"
+import facebook from "../../public/facebook_logo.svg"
 
 getCookie;
 class SignIn extends React.Component {

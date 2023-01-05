@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Item from "./card-item";
+import React from "react";
 import CatalogItem from "./catalog-items";
 
 export function Catalog({state, current, title, func }) {
   return (
     <li className="m-2 flex flex-col">
       <button onClick={() => func()}>
-       <p className="text-lg font-bold font-sans">{title.toUpperCase()}</p>
+       <p className="font-montserrat text-sm font-bold">{title.toUpperCase()}</p>
       </button>
       <hr className={`catalog-line ${current == state ?"bg-black" : undefined}`} />
     </li>
@@ -86,14 +85,9 @@ class SpecialItems extends React.Component {
   }
 
   render() {
-    let items = [
-      this.state.catalogs.map((v, i) => (
-        <CatalogItem key={i} items={v.items} />
-      ))
-    ];
     return (
-      <div className="relative flex w-full flex-col">
-        <p className="text-center font-sans text-3xl">{this.props.title.toUpperCase()}</p>
+      <div className="relative flex w-full flex-col p-6 md:p-12">
+        <p className="text-center font-staatliches text-5xl">{this.props.title.toUpperCase()}</p>
         <ul className="flex flex-row justify-center">
           {this.state.catalogs.map((v, i) => (
             <Catalog

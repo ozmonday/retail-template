@@ -3,8 +3,8 @@ import NavTop from "./navbar-top";
 import Search from "./navbar-search";
 import Cart from "./navbar-cart";
 import Menu from "./navbar-menu";
-import Icon from "@mdi/react";
-import { mdiMagnify } from "@mdi/js";
+import Image from "next/image";
+import search from "../public/search_white.svg";
 
 export default function Nav({ props }) {
   return (
@@ -19,7 +19,7 @@ export default function Nav({ props }) {
         </div>
         <div className="flex flex-col justify-center md:hidden">
           <button className="flex h-full flex-col justify-center">
-            <Icon path={mdiMagnify} title="search" size={1.2} color="white" />
+          <Image src={search} width={28} height={28} alt="cart" />
           </button>
         </div>
         <ul className="hidden lg:flex lg:flex-row">

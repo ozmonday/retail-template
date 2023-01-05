@@ -32,17 +32,18 @@
 }
 
 .cart_appear {
-  height: 100%;
-  width: 30rem;
+  height: fit-content;
+  width: 32rem;
+  opacity: 1;
   overflow: hidden;
-  transition: all 200ms ease;
+  transition: all 400ms ease;
 }
 
 .cart_disappear {
-  height: 0;
-  width: 0;
+  display: none;
+  opacity: 0;
   overflow: hidden;
-  transition: all 200ms ease;
+  transition: all 400ms ease;
 }
 
 

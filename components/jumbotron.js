@@ -2,8 +2,9 @@ import Image from "next/image";
 import React, { useEffect, useReducer} from "react";
 import ind from "../public/indonesia-flag-wrinkled-dark-background-3d-render.jpg";
 import jbt from "../public/2201_w030_n002_291b_p1_291.jpg";
-import Icon from "@mdi/react";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import left from "../public/chevron_left_black.svg";
+import right from "../public/chevron_right_black.svg";
+
 
 export default function Jumbotron({}) {
   let items = [
@@ -58,7 +59,7 @@ export default function Jumbotron({}) {
 
   return (
     <div className="relative flex flex-col bg-white">
-      <div id="jumbotron" className="flex w-full flex-row overflow-y-auto">
+      <div id="jumbotron" className="hidden-scrollbar flex w-full flex-row overflow-y-auto">
         {items.map((e, i) => (
           <Image key={i} src={e.src} width="100%" height="auto" alt={e.title} />
         ))}
@@ -70,14 +71,14 @@ export default function Jumbotron({}) {
             onClick={() => dispatch({type: "decrement"})}
             className=" bg-gray-400 opacity-75 p-2"
           >
-            <Icon path={mdiChevronLeft} title="left" size={1} color="grey" />
+            <Image src={left} alt="left" height={25} width={25}/>
           </button>
           <button
             disabled={state.index === items.length - 1}
             onClick={() => dispatch({type: "increment"})}
             className=" bg-gray-400 opacity-75 p-2"
           >
-            <Icon path={mdiChevronRight} title="right" size={1} color="grey" />
+            <Image src={right} alt="right" height={25} width={25}/>
           </button>
         </div>
         <div className="absolute bottom-0 mb-3 flex w-full flex-row justify-center">

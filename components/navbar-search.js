@@ -13,7 +13,7 @@ export default function Search() {
     <div className="flex h-full flex-row">
       <input ref={src} className="my-auto p-1.5" />
       <button className="my-auto px-2" onClick={searcing}>
-        <Image src={search} width={35} height={35} alt="cart" />
+        <Image src={search} width={35} height={35} alt="search" />
       </button>
     </div>
   );

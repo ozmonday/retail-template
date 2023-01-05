@@ -24,7 +24,7 @@ function NavLink({ src, icon, title }) {
         {icn(icon)}
       </div>
       <div className="flex h-full flex-col justify-center">
-        <p className="link font-montserrat text-xs font-medium">{title}</p>
+        <p className="link font-montserrat text-xs font-medium font-reguller">{title}</p>
       </div>
     </button>
   );
