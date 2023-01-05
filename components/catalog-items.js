@@ -14,25 +14,24 @@ class CatalogItem extends React.Component {
     };
 
     this.container = React.createRef();
-
     this.rightClick = this.rightClick.bind(this);
     this.leftClick = this.leftClick.bind(this);
   }
 
   componentDidMount() {
     let el = this.container.current;
-    const div = window.innerWidth <= 768 ? 1 : 4;
+    const div = window.innerWidth <= 768 ? 2 : 5;
 
     el.style.gridTemplateColumns = `repeat(${this.state.items.length}, calc(100% /${div}))`;
     el.style.gridTemplateRows = "minmax(0, 1fr)";
 
     window.addEventListener("resize", () => {
       const card = el.getElementsByTagName("li")[0].clientWidth;
-      const div = window.innerWidth <= 768 ? 1 : 4;
+      const div = window.innerWidth <= 768 ? 2 : 5;
 
       el.style.gridTemplateColumns = `repeat(${
         this.state.items.length
-      }, calc(100% /${window.innerWidth <= 768 ? 1 : 4}))`;
+      }, calc(100% /${window.innerWidth <= 768 ? 2 : 5}))`;
       el.scrollLeft = card * this.state.index;
 
       if (this.state.items.length > div) {
@@ -94,7 +93,7 @@ class CatalogItem extends React.Component {
         </div>
         <ul
           ref={this.container}
-          className="hidden-scrollbar grid w-3/4 overflow-x-scroll"
+          className="hidden-scrollbar grid w-full overflow-x-scroll"
         >
           {this.state.items.map((v, i) => (
             <Item key={i} discont={v.discont} name={v.name} price={v.price} />

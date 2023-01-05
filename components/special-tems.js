@@ -80,8 +80,6 @@ class SpecialItems extends React.Component {
         },
       ],
     };
-
-    this.items = this.state.catalogs.map((v, i) => <CatalogItem key={i} items={v.items} />)
   }
 
   render() {
@@ -99,7 +97,7 @@ class SpecialItems extends React.Component {
             />
           ))}
         </ul>
-        {this.items[this.state.current]}
+        {this.state.catalogs.map((v, i) => <div className={`${this.state.current === i? "flex fade-in" : "hidden"}`}><CatalogItem key={i} items={v.items} /></div>)}
       </div>
     );
   }
