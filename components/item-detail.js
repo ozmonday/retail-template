@@ -6,43 +6,59 @@ import two from "../public/Reso.avif";
 import three from "../public/Garanzia.avif";
 import star from "../public/star_gray.svg";
 import share from "../public/share_gray.svg";
+import test from "../public/606901mmg_2.avif";
 
 import Link from "next/link";
+import Select from "./select";
 
-export default function ItemDetail() {
+export default function ItemDetail({ item }) {
   const [index, setIndex] = useState(0);
+
+  const size = [{ value: 32, label: "XL" }];
+
+  const priceTag = (discont) => {
+    if (discont) {
+      return (
+        <div className="day-item flex flex-row">
+          <p className="font-montserrat my-auto text-xl text-gray-400 line-through">
+            ${item.price}
+          </p>
+          <p className="font-montserrat my-auto px-3 text-sm text-red-700">
+            -{discont}%
+          </p>
+          <p className="font-montserrat my-auto text-2xl font-bold text-blue-400">
+            ${Math.round(item.price - item.price * (discont / 100))}
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <p className="font-montserrat text-center text-xl font-bold text-blue-400">
+          {price}
+        </p>
+      );
+    }
+  };
 
   return (
     <div className="m-3 grid grid-cols-1 bg-white md:m-5 md:mx-20 md:grid-cols-2">
       <div className="flex flex-col">
-        <Image />
+        <div className="flex max-h-full flex-col ">
+          <img src={item.image} className="h-full w-auto" alt={item.title} />
+        </div>
       </div>
-      <div className="flex flex-col p-5 md:p-10 border-l">
-        <p className="font-staatliches text-2xl text-blue-400">Nama</p>
+      <div className="flex flex-col border-l p-5 md:p-10">
+        <p className="font-staatliches text-2xl text-blue-400">{item.title}</p>
         <p className="my-1 text-xs font-normal text-gray-700">
           CODE:<b>MD32423423</b>
         </p>
-        <div className=" day-item my-3 flex flex-row">
-          <p className="font-montserrat my-auto text-xl  text-gray-400 line-through">
-            ${12}
-          </p>
-          <p className="font-montserrat my-auto px-1 text-lg text-red-700">
-            -{20}%
-          </p>
-          <p className="font-montserrat my-auto text-2xl font-bold text-blue-400">
-            ${12 - 12 * (20 / 100)}
-          </p>
-        </div>
-        <hr className="border-dashed border-blue-400" />
+        {priceTag(23)}
+        <hr className="my-3 border-dashed border-blue-400" />
         <div className="mt-5 flex flex-row">
-          <p className="font-montserrat my-auto text-sm font-bold text-gray-700">
+          <p className="font-montserrat my-auto mr-2 text-sm font-bold text-gray-700">
             SIZE:
           </p>
-          <select className="mx-2 p-2">
-            <option>one</option>
-            <option>two</option>
-            <option>three</option>
-          </select>
+          <Select value={console.log} options={size} />
         </div>
         <p className="font-montserrat my-6 text-sm font-normal text-gray-700">
           Need help? Contact our{" "}
@@ -68,7 +84,7 @@ export default function ItemDetail() {
             />
             <p className="my-auto">ADD TO WISHLIST</p>
           </button>
-          <button className="text-sm flex flex-row font-normal text-blue-400">
+          <button className="flex flex-row text-sm font-normal text-blue-400">
             <Image
               src={share}
               height={15}
@@ -119,8 +135,8 @@ export default function ItemDetail() {
             </p>
           </div>
         </div>
-        <hr className="border-dashed border-blue-400" />
-        <div className="my-3 flex flex-row">
+        <hr className="my-3 border-dashed border-blue-400" />
+        <div className="flex flex-row">
           <button
             onClick={() => setIndex(0)}
             className={`font-montserrat m-1 basis-4/12 text-xs ${
@@ -152,15 +168,13 @@ export default function ItemDetail() {
             RETURN
           </button>
         </div>
-        <div>
+        <div className="my-3">
           <p
             className={`font-montserrat font-reguller mx-5 flex text-xs text-gray-700 ${
               index == 0 ? "fade-in" : "hidden"
             }`}
           >
-            ABS Shell. Full Jet helmet, strap with micrometric retention system.
-            Removable, washable and breathable linin. ECE 22.05 approved.
-            Available in 5 sizes (XS-XL). Made in Italy.
+            {item.description}
           </p>
           <p
             className={`font-montserrat font-reguller mx-5 flex text-xs text-gray-700 ${
@@ -182,6 +196,28 @@ export default function ItemDetail() {
             delivered separately, from the date the last product was received.
             For more details about returns click here
           </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BlankItemDetail() {
+  return (
+    <div className="m-3 grid animate-pulse grid-cols-1 bg-white md:m-5 md:mx-20 md:grid-cols-2">
+      <div className="flex h-96 flex-col bg-slate-400"></div>
+      <div className="flex flex-col p-5 md:p-10">
+        <div className="flex h-6 w-3/4 flex-col rounded bg-slate-400"></div>
+        <div className="my-2 flex h-3 w-1/4 flex-col rounded bg-slate-400"></div>
+        <div className="flex h-5 w-2/6 flex-col rounded bg-slate-400"></div>
+        <hr className="my-3 border-dashed border-blue-400" />
+        <div className="mt-5 flex h-6 w-24 flex-col rounded bg-slate-400"></div>
+        <div className="my-6 flex h-3 w-2/4 flex-col rounded bg-slate-400"></div>
+        <button className="font-montserrat bg-blue-400 p-3 text-sm font-bold text-white">
+          ADD TO CART
+        </button>
+        <div className="my-2 flex flex-row justify-end">
+          <div className="flex h-5 w-2/6 flex-col rounded bg-slate-400"></div>
         </div>
       </div>
     </div>

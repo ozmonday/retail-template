@@ -6,6 +6,7 @@
 @import "./footer.module.css";
 @import "./card.module.css";
 @import "./specialitem.module.css";
+@import "./selectbox.module.css";
 @import "./animation.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Staatliches&display=swap');
 
@@ -14,6 +15,11 @@
   --color-blue-light: #45b6fe;
   --gutter: 20px;
   --w: 40%;
+}
+
+
+img {
+  object-fit: cover;
 }
 
 body {
@@ -70,4 +76,9 @@ input:focus {
 
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+
+.select-custom  {
+  border-radius: 0;
 }

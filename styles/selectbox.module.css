@@ -1,0 +1,4 @@
+option:hover {
+  color: white;
+  background-color: var(--color-blue-light);
+}

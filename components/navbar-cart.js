@@ -7,7 +7,7 @@ import test from "../public/helm/four.avif"
 export function CartItem() {
   return <div className="flex flex-row bg-red-400">
     <div className="basis-3/12 flex flex-row justify-center">
-      <Image src={test} className="w-24 h-24"/>
+      <Image src={test} className="w-24 h-24" alt="cart item"/>
     </div>
     <div className="flex flex-col basis-7/12 justify-center">
       <p>product name</p>
@@ -46,7 +46,7 @@ export default function Cart() {
           <p className="text-center p-5">recenly add items</p>
           <hr/>
           <CartItem/>
-          <p className="text-center">you don't have items in the cart</p>
+          <p className="text-center">{"you don't have items in the cart"}</p>
         </div>
       </div>
     </span>

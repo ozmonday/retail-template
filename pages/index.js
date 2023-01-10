@@ -11,10 +11,6 @@ class Home extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    //let res = getCookie("token")
-    //console.log(res)
-  }
 
   render() {
     return (
@@ -38,3 +34,5 @@ class Home extends React.Component {
 }
 
 export default Home;
+
+

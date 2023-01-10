@@ -20,18 +20,18 @@ class CatalogItem extends React.Component {
 
   componentDidMount() {
     let el = this.container.current;
-    const div = window.innerWidth <= 768 ? 2 : 5;
+    const div = window.innerWidth <= 768 ? 2 : 4;
 
     el.style.gridTemplateColumns = `repeat(${this.state.items.length}, calc(100% /${div}))`;
     el.style.gridTemplateRows = "minmax(0, 1fr)";
 
     window.addEventListener("resize", () => {
       const card = el.getElementsByTagName("li")[0].clientWidth;
-      const div = window.innerWidth <= 768 ? 2 : 5;
+      const div = window.innerWidth <= 768 ? 2 : 4;
 
       el.style.gridTemplateColumns = `repeat(${
         this.state.items.length
-      }, calc(100% /${window.innerWidth <= 768 ? 2 : 5}))`;
+      }, calc(100% /${window.innerWidth <= 768 ? 2 : 4}))`;
       el.scrollLeft = card * this.state.index;
 
       if (this.state.items.length > div) {
@@ -96,7 +96,7 @@ class CatalogItem extends React.Component {
           className="hidden-scrollbar grid w-full overflow-x-scroll"
         >
           {this.state.items.map((v, i) => (
-            <Item key={i} discont={v.discont} name={v.name} price={v.price} />
+            <Item key={i} id={v.id} discont={v.discont} name={v.name} price={v.price} />
           ))}
         </ul>
         <div
