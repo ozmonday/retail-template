@@ -1,78 +1,65 @@
-import Item from "./card-item";
 import React from "react";
 import Image from "next/image";
 import left from "../public/chevron_left_black.svg";
 import right from "../public/chevron_right_black.svg";
 
-class CatalogItem extends React.Component {
+class XSlide extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
-      items: props.items,
+      card: 0,
       nav: false,
     };
 
     this.container = React.createRef();
     this.rightClick = this.rightClick.bind(this);
     this.leftClick = this.leftClick.bind(this);
+    this.navCallback = this.navCallback.bind(this);
   }
 
   componentDidMount() {
-    let el = this.container.current;
+    const el = this.container.current;
+    const card = el.getElementsByTagName("li").length  === 0 ? 0 : el.getElementsByTagName("li")[0].clientWidth;
+    console.log(card)
     const div = window.innerWidth <= 768 ? 2 : 4;
-
-    el.style.gridTemplateColumns = `repeat(${this.state.items.length}, calc(100% /${div}))`;
+    el.style.gridTemplateColumns = `repeat(${this.props.children.length}, calc(100% /${div}))`;
     el.style.gridTemplateRows = "minmax(0, 1fr)";
 
     window.addEventListener("resize", () => {
-      const card = el.getElementsByTagName("li")[0].clientWidth;
+      const card = el.getElementsByTagName("li").length  === 0 ? 0 : el.getElementsByTagName("li")[0].clientWidth;
       const div = window.innerWidth <= 768 ? 2 : 4;
-
-      el.style.gridTemplateColumns = `repeat(${
-        this.state.items.length
-      }, calc(100% /${window.innerWidth <= 768 ? 2 : 4}))`;
+      el.style.gridTemplateColumns = `repeat(${this.props.children.length}, calc(100% /${
+        window.innerWidth <= 768 ? 2 : 4
+      }))`;
       el.scrollLeft = card * this.state.index;
 
-      if (this.state.items.length > div) {
-        console.log("more");
-        this.setState({ nav: true });
-      } else {
-        this.setState({ nav: false });
-      }
+      this.setState({ nav: this.props.children.length > div ? true : false, card: card });
     });
 
-    if (this.state.items.length > div) {
-      this.setState({ nav: true });
-    } else {
-      this.setState({ nav: false });
-    }
+    this.setState({ nav: this.props.children.length > div ? true : false, card : card});
   }
 
-  componentDidUpdate() {
-    let el = this.container.current;
-    const card = el.getElementsByTagName("li")[0].clientWidth;
+  navCallback() {
+    const el = this.container.current;
     el.scrollTo({
-      left: card * this.state.index,
+      left: this.state.card * this.state.index,
       behavior: "smooth",
     });
   }
 
   rightClick() {
-    let el = this.container.current;
-    const card = el.getElementsByTagName("li")[0].clientWidth;
-    const dividen = Math.round(el.clientWidth / card);
-    if (
-      dividen * card + card * this.state.index <
-      this.state.items.length * card
-    ) {
-      this.setState({ index: this.state.index + 1 });
+    const el = this.container.current;
+    const div = Math.round(el.clientWidth / this.state.card);
+
+    if (div * this.state.card + this.state.card * this.state.index < this.props.children.length * this.state.card) {
+      this.setState({ index: this.state.index + 1 }, this.navCallback);
     }
   }
 
   leftClick() {
     if (this.state.index !== 0) {
-      this.setState({ index: this.state.index - 1 });
+      this.setState({ index: this.state.index - 1 }, this.navCallback);
     }
   }
 
@@ -95,9 +82,8 @@ class CatalogItem extends React.Component {
           ref={this.container}
           className="hidden-scrollbar grid w-full overflow-x-scroll"
         >
-          {this.state.items.map((v, i) => (
-            <Item key={i} id={v.id} discont={v.discont} name={v.name} price={v.price} />
-          ))}
+          {this.props.children}
+         
         </ul>
         <div
           className={`${
@@ -116,4 +102,4 @@ class CatalogItem extends React.Component {
   }
 }
 
-export default CatalogItem;
+export default XSlide;

@@ -1,5 +1,5 @@
 import React from "react";
-import Item, { BlankItem } from "../../components/card-item";
+import {Item,  BlankItem } from "../../components/item-card";
 import Layout from "../../components/layout";
 import Select from "../../components/select";
 
@@ -99,14 +99,6 @@ class Catagory extends React.Component {
 }
 
 export default Catagory;
-
-// export async function getStaticPaths() {
-//   return { paths: [
-//     {
-//       params:
-//     }
-//   ], fallback: false };
-// }
 
 export async function getServerSideProps({ params, req, res }) {
   console.log(req.headers)

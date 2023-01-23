@@ -6,12 +6,10 @@ import two from "../public/Reso.avif";
 import three from "../public/Garanzia.avif";
 import star from "../public/star_gray.svg";
 import share from "../public/share_gray.svg";
-import test from "../public/606901mmg_2.avif";
-
 import Link from "next/link";
 import Select from "./select";
 
-export default function ItemDetail({ item }) {
+export function ItemDetail({ item }) {
   const [index, setIndex] = useState(0);
 
   const size = [{ value: 32, label: "XL" }];

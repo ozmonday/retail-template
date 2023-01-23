@@ -1,84 +1,78 @@
 import React from "react";
 import Layout from "../../components/layout";
-import ItemDetail, { BlankItemDetail } from "../../components/item-detail";
-import CatalogItem from "../../components/catalog-items";
-import axios from "axios";
+import { ItemDetail, BlankItemDetail } from "../../components/item-detail";
+import XSlide from "../../components/x-slider";
+import { Item, BlankItem } from "../../components/item-card";
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: undefined,
-      items: [
-        {
-          id: 1,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-        {
-          id: 3,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-        {
-          id: 7,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-        {
-          id: 9,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-        {
-          id: 10,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-        {
-          id: 12,
-          name: "ini helm",
-          price: 100,
-          discont: 20,
-        },
-      ],
+      suggested: [],
+      complement: [],
     };
-    this.fetchData =this.fetchData.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
-
- 
 
   componentDidMount() {
     this.fetchData(this.props.id);
   }
 
-
   async fetchData(id) {
-    console.log(id)
     try {
-      let response =  await fetch(`https://fakestoreapi.com/products/${id}`).then(res => res.json())
-      this.setState({product: response})
-    } catch(err) {
-      console.log(err)
+      let response = await fetch(
+        `https://fakestoreapi.com/products/${id}`
+      ).then((res) => res.json());
+      this.setState({ product: response });
+    } catch (err) {
+      console.log(err);
     }
   }
 
   render() {
     return (
       <Layout>
-        {this.state.product != undefined ?  <ItemDetail item={this.state.product} /> : <BlankItemDetail/>}
-        <div className="m-3 flex flex-col bg-white md:m-5 md:mx-20">
-          <p className="text-center my-4 font-staatliches text-2xl md:text-3xl text-blue-400">Suggested products</p>
-          <CatalogItem items={this.state.items} />
+        {this.state.product != undefined ? (
+          <ItemDetail item={this.state.product} />
+        ) : (
+          <BlankItemDetail />
+        )}
+
+        <div className="relative flex flex-col w-full p-3 md:p-5 md:px-20">
+          <p className="font-staatliches my-4 text-center text-2xl text-blue-400 md:text-3xl">
+            Suggested products
+          </p>
+          <div className="flex">
+          <XSlide>
+            <Item id={2} discont={30} name={"hako"} price={34}></Item>
+            {/* <BlankItem/> */}
+
+            {/* <BlankItem/>
+            <BlankItem/>
+            <BlankItem/> */}
+            
+            {/* {this.state.suggested.length === 0 ? (
+              <BlankItem />
+            ) : (
+              this.state.suggested.map((v, i) => (
+                <Item
+                  key={i}
+                  id={v.id}
+                  discont={v.discont}
+                  name={v.name}
+                  price={v.price}
+                />
+              ))
+            )} */}
+          </XSlide>
+          </div>
         </div>
         <div className="m-3 flex flex-col bg-white md:m-5 md:mx-20">
-          <p className="text-center my-4 font-staatliches text-2xl md:text-3xl text-blue-400">Complete with </p>
-          <CatalogItem items={this.state.items} />
+          <p className="font-staatliches my-4 text-center text-2xl text-blue-400 md:text-3xl">
+            Complete with{" "}
+          </p>
+          <XSlide> </XSlide>
         </div>
       </Layout>
     );
@@ -87,12 +81,12 @@ class Post extends React.Component {
 
 export default Post;
 
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({ params }) {
   return {
     props: {
-      id : params.detail,
-    }
-  }
+      id: params.detail,
+    },
+  };
 }
 
 // export async function getStaticProps({ params }) {
@@ -103,5 +97,3 @@ export async function getServerSideProps({params}) {
 //     },
 //   };
 // }
-
-

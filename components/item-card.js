@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import star_blue from "../public/star_blue.svg";
 import star_white from "../public/star_white.svg";
 
-export default function Item({ id, price, discont, name, picture }) {
+export function Item({ id, price, discont, name, picture }) {
   const [wishlist, setWishlist] = useState(false);
   const route = useRouter();
 
@@ -59,7 +59,6 @@ export default function Item({ id, price, discont, name, picture }) {
   };
 
   const openProduct = (id) => {
-    console.log("open product");
     route.push(`/product/${id}`);
   };
 
