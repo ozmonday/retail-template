@@ -1,0 +1,7 @@
+.catalog-line {
+  border: none;
+  margin-top: 1px;
+  height: 2px;
+  transition: all 200ms ease;
+}
+
